@@ -38,13 +38,12 @@ public class OszImportTester : MonoBehaviour
                 using (var reader = new StreamReader(entry.Open()))
                 {
                     string text = reader.ReadToEnd();
-                    Debug.Log($"Found .osu: {entry.FullName}\nFirst 200 chars:\n" +
-                        text.Substring(0, Mathf.Min(200, text.Length)));
+
+                    var chart = OsuManiaParser.Parse(text);
+                    Debug.Log($"Mania Keys: {chart.keyCount}, notes: {chart.notes.Count}");
                 }
             } 
         }
-
-        Debug.Log($"Done. Found {osuCount} .osu files.");
     }
 
     // Update is called once per frame
