@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a9949d619eac04ebdee98c4905bbdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OszImportTester
-  oszPath: Assets/Assets/Bar/OSZ Files/My Dearest.osz
+  oszPath: Assets/Assets/Bar/OSZ Files/Crossing Field.osz
   spawner: {fileID: 1091155745}
   audioSource: {fileID: 451237887}
   clock: {fileID: 298814442}
@@ -242,7 +242,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.49
+  m_Volume: 0.189
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febf5a2705d797249b8cd514ffbeea7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotePool
-  notePrefab: {fileID: 1742704843067350717, guid: eeccd86b5f4b47248b0214ad8d3652db, type: 3}
+  notePrefab: {fileID: 179147491277974921, guid: 73aada4ec38ff3a4285c47c69509eb64, type: 3}
   prewarmCount: 100
   poolParent: {fileID: 1091155746}
 --- !u!4 &475900892
@@ -495,7 +495,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1.265
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -785,13 +785,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868d091a29da0ff4d9097751e353e769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteSpawner
-  audioSource: {fileID: 451237887}
   laneSpawnPoints:
   - {fileID: 1867714949}
   - {fileID: 679563232}
   - {fileID: 1581861682}
   - {fileID: 382659381}
-  notePrefab: {fileID: 1742704843067350717, guid: eeccd86b5f4b47248b0214ad8d3652db, type: 3}
   notePool: {fileID: 475900891}
   clock: {fileID: 298814442}
   spawnLeadTimeMs: 4500
