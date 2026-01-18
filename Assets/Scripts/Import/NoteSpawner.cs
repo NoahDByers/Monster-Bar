@@ -1,13 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class NoteSpawner : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private Transform[] laneSpawnPoints; //Should have one per lane
-    [SerializeField] private GameObject notePrefab;
     [SerializeField] private NotePool notePool;
 
     [Header("Timing / Scroll")]

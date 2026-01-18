@@ -116,8 +116,20 @@ public class OszImportTester : MonoBehaviour
     {
         string url = "file://" + filePath.Replace("\\", "/");
 
-        using (UnityWebRequest req = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.UNKNOWN))
+        // Choose AudioType based on extension (more reliable than UNKNOWN)
+        AudioType type = AudioType.UNKNOWN;
+        string ext = Path.GetExtension(filePath).ToLowerInvariant();
+        if (ext == ".mp3") type = AudioType.MPEG;
+        else if (ext == ".ogg") type = AudioType.OGGVORBIS;
+        else if (ext == ".wav") type = AudioType.WAV;
+
+        using (UnityWebRequest req = UnityWebRequestMultimedia.GetAudioClip(url, type))
         {
+            // Important: avoid streaming decode stutters
+            var dh = (DownloadHandlerAudioClip)req.downloadHandler;
+            dh.streamAudio = false;
+            dh.compressed = false;
+
             yield return req.SendWebRequest();
 
             if (req.result != UnityWebRequest.Result.Success)
@@ -127,9 +139,17 @@ public class OszImportTester : MonoBehaviour
             }
 
             var clip = DownloadHandlerAudioClip.GetContent(req);
+
+            // Force Unity to load/decode audio data fully before starting playback
+            clip.LoadAudioData();
+            while (clip.loadState == AudioDataLoadState.Loading)
+                yield return null;
+
             audioSource.clip = clip;
+
             clock.SetAudioSource(audioSource);
             clock.StartSongNow();
         }
     }
+
 }
