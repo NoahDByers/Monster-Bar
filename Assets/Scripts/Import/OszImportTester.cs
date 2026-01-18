@@ -2,29 +2,35 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class OszImportTester : MonoBehaviour
 {
 
     [SerializeField] private string oszPath;
+    [SerializeField] private NoteSpawner spawner;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private SongClock clock;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (string.IsNullOrWhiteSpace(oszPath))
+        if (string.IsNullOrWhiteSpace(oszPath) || !File.Exists(oszPath))
         {
-            Debug.LogError("Set oszPath in the Inspector.");
+            Debug.LogError("OSZ path invalid");
             return;
         }
 
-        if (!File.Exists(oszPath))
+        if (spawner == null || audioSource == null)
         {
-            Debug.LogError("OSZ not found: " + oszPath);
+            Debug.LogError("Assign spawner and audioSource in Inspector.");
             return;
         }
 
-        int osuCount = 0;
+        // Read chartts + keep the winning .osu text so we can get AudioFilename
+        ManiaChart bestChart = null;
+        string bestOsuText = null;
 
         using (ZipArchive archive = ZipFile.OpenRead(oszPath))
         {
@@ -33,22 +39,97 @@ public class OszImportTester : MonoBehaviour
                 if (!entry.FullName.EndsWith(".osu", StringComparison.OrdinalIgnoreCase))
                     continue;
 
-                osuCount++;
-
                 using (var reader = new StreamReader(entry.Open()))
                 {
                     string text = reader.ReadToEnd();
 
-                    var chart = OsuManiaParser.Parse(text);
-                    Debug.Log($"Mania Keys: {chart.keyCount}, notes: {chart.notes.Count}");
+                    if (!text.Contains("Mode: 3")) continue;
+
+                    ManiaChart chart;
+                    try { chart = OsuManiaParser.Parse(text); }
+                    catch { continue; }
+
+                    if (bestChart == null || chart.notes.Count > bestChart.notes.Count)
+                    {
+                        bestChart = chart;
+                        bestOsuText = text;
+                    }  
                 }
             } 
+
+            if (bestChart == null)
+            {
+               Debug.LogError("No Osu!mania charts found in this OSZ file.");
+               return; 
+            }
+
+            Debug.Log($"Selected chart: keys={bestChart.keyCount}, notes={bestChart.notes.Count}");
+
+            // Get audio file name from the selected .osu
+            string audioFilename = OsuManiaParser.GetAudioFilename(bestOsuText);
+            if (string.IsNullOrEmpty(audioFilename))
+            {
+                Debug.LogError("AudioFilename not found in .osu [General].");
+                return;
+            }
+
+            //Find that audio file inside the OSZ
+            ZipArchiveEntry audioEntry = null;
+            foreach (var e in archive.Entries)
+            {
+                // .osu often uses just the filename; compare against FullName and file name
+                if (string.Equals(e.FullName, audioFilename, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(Path.GetFileName(e.FullName), audioFilename, StringComparison.OrdinalIgnoreCase))
+                {
+                    audioEntry = e;
+                    break;
+                }
+            }
+
+            if (audioEntry == null)
+            {
+                Debug.LogError($"Audio file not found in OSZ: {audioFilename}");
+                return;
+            }
+
+            // Extract the the audio file to a persistent data path
+            string outDir = Path.Combine(Application.persistentDataPath, "ImportedOszAudio");
+            Directory.CreateDirectory(outDir);
+
+            string outPath = Path.Combine(outDir, Path.GetFileName(audioEntry.FullName));
+            using (var inStream = audioEntry.Open())
+            using (var outStream = File.Create(outPath))
+            {
+                inStream.CopyTo(outStream);
+            }
+
+            // Load chart into spawner now (it will start spawning after audio plays)
+            spawner.LoadChart(bestChart);
+
+            //Load and play audio clip
+            StartCoroutine(LoadAndPlayAudio(outPath));
+
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private System.Collections.IEnumerator LoadAndPlayAudio(string filePath)
     {
-        
+        string url = "file://" + filePath.Replace("\\", "/");
+
+        using (UnityWebRequest req = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.UNKNOWN))
+        {
+            yield return req.SendWebRequest();
+
+            if (req.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Audio load failed: " + req.error);
+                yield break;
+            }
+
+            var clip = DownloadHandlerAudioClip.GetContent(req);
+            audioSource.clip = clip;
+            clock.SetAudioSource(audioSource);
+            clock.StartSongNow();
+        }
     }
 }
