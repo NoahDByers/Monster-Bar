@@ -16,6 +16,7 @@ public class NoteController : MonoBehaviour
     [SerializeField] private Transform body;
     [SerializeField] private SpriteRenderer bodyRenderer;
 
+    private Vector3 bodyBaseScale;
     private Camera cam;
     private float worldUnitsPerPixel;
 
@@ -40,6 +41,9 @@ public class NoteController : MonoBehaviour
         if (bodyRenderer == null && body != null)
             bodyRenderer = body.GetComponent<SpriteRenderer>();
 
+        if (body != null) 
+            bodyBaseScale = body.localScale;
+
         cam = Camera.main;
         if (cam != null && cam.orthographic)
             worldUnitsPerPixel = (cam.orthographicSize * 2f) / Screen.height;
@@ -51,6 +55,18 @@ public class NoteController : MonoBehaviour
         this.laneX = laneX;
         this.hitY = hitY;
         this.unitsPerMs = unitsPerMs;
+
+        if (body != null)
+        {
+            body.localScale = bodyBaseScale;
+            body.localPosition = Vector3.zero;
+        }
+
+        if (bodyRenderer != null)
+            bodyRenderer.enabled = note.IsHold;
+
+        float tMs = (clock != null) ? clock.NowMs : 0f;
+        ApplyPose(tMs);
     }
 
     //Helper to snap the notes to a pixel based grid
@@ -114,5 +130,33 @@ public class NoteController : MonoBehaviour
             if (pool != null) pool.ReturnToPool(this);
             else gameObject.SetActive(false);
         }
+    }
+
+    private void ApplyPose(float songTimeMs)
+    {
+        float x = SnapX(laneX);
+
+        // Head position uses start time
+        float headUntil = note.startMs - songTimeMs;
+        float headY = hitY + headUntil * unitsPerMs;
+
+        // Put root at head position, children in local space
+        transform.position = new Vector3(x, headY, 0f);
+        if (head != null) head.localPosition = Vector3.zero;
+
+        if (!note.IsHold || body == null) return;
+
+        float tailUntil = note.endMs - songTimeMs;
+        float tailY = hitY + tailUntil * unitsPerMs;
+
+        // Tail relative to head
+        float deltaY = tailY - headY;
+
+        // Body centered between head and tail, scaled to length
+        body.localPosition = new Vector3(0f, deltaY * 0.5f, 0f);
+
+        var s = bodyBaseScale;
+        s.y = Mathf.Max(0.001f, Mathf.Abs(deltaY));
+        body.localScale = s;
     }
 }
