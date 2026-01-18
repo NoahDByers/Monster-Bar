@@ -94,4 +94,29 @@ public static class OsuManiaParser
         chart.notes.Sort((a, b) => a.startMs.CompareTo(b.startMs));
         return chart;
     }
+
+    public static string GetAudioFilename(string osuText)
+    {
+        bool inGeneral = false;
+        var lines = osuText.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+
+        foreach (var raw in lines)
+        {
+            var line = raw.Trim();
+            if (line.Length == 0 || line.StartsWith("//")) continue;
+
+            if (line.StartsWith("[") && line.EndsWith("]"))
+            {
+                inGeneral = line.Equals("[General]", StringComparison.OrdinalIgnoreCase);
+                continue;
+            }
+
+            if (!inGeneral) continue;
+
+            if (line.StartsWith("AudioFilename:", StringComparison.OrdinalIgnoreCase))
+                return line.Split(':', 2)[1].Trim();
+        }
+
+        return null;
+    }
 }
