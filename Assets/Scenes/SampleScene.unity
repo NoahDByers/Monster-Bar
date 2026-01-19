@@ -381,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 263127454}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.852, y: 0.05, z: 0}
+  m_LocalPosition: {x: -0.849, y: 0.05, z: 0}
   m_LocalScale: {x: 0.8833422, y: 2.5198686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -413,7 +413,7 @@ Transform:
   m_GameObject: {fileID: 264125290}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.274, y: -2, z: 0}
+  m_LocalPosition: {x: -1.28, y: -2.011, z: 0}
   m_LocalScale: {x: 2.2898, y: 0.03, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -520,12 +520,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298814439}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.93598, y: 1.58308, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.10396, y: 1.89406, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1828205099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &298814442
 MonoBehaviour:
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SongClock
   audioSource: {fileID: 451237887}
-  visualOffsetMs: 250
+  visualOffsetMs: 200
 --- !u!1 &382659380
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,6 +594,7 @@ MonoBehaviour:
   goodWindowSec: 0.09
   missWindowSec: 0.14
   NoteSpawner: {fileID: 1091155745}
+  songClock: {fileID: 298814442}
 --- !u!1 &416980062
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +622,7 @@ Transform:
   m_GameObject: {fileID: 416980062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.886, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0.8842, y: 0.05, z: 0}
   m_LocalScale: {x: 0.863944, y: 2.5198686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -871,12 +872,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475900890}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.20922, y: 0.97873, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.04124, y: 1.28971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1828205099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -1152,6 +1153,7 @@ MonoBehaviour:
   goodWindowSec: 0.09
   missWindowSec: 0.14
   NoteSpawner: {fileID: 1091155745}
+  songClock: {fileID: 298814442}
 --- !u!1 &852799003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,7 +1181,7 @@ Transform:
   m_GameObject: {fileID: 852799003}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.309, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0.306, y: 0.05, z: 0}
   m_LocalScale: {x: 0.8833422, y: 2.5198686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1287,7 +1289,7 @@ Transform:
   m_GameObject: {fileID: 885243213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.28, y: 0.05, z: 0}
+  m_LocalPosition: {x: -0.284, y: 0.05, z: 0}
   m_LocalScale: {x: 0.8833422, y: 2.5198686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1403,9 +1405,13 @@ MonoBehaviour:
   - {fileID: 1581861682}
   - {fileID: 382659381}
   notePool: {fileID: 475900891}
-  laneControllers: []
+  laneControllers:
+  - {fileID: 1867714950}
+  - {fileID: 679563233}
+  - {fileID: 1581861683}
+  - {fileID: 382659382}
   clock: {fileID: 298814442}
-  spawnLeadTimeMs: 3000
+  spawnLeadTimeMs: 2000
   hitY: -2
 --- !u!4 &1091155746
 Transform:
@@ -1415,13 +1421,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091155744}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.84276, y: 0.46737, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.67478, y: 0.77835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 451237888}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1828205099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1581861681
 GameObject:
@@ -1476,6 +1482,7 @@ MonoBehaviour:
   goodWindowSec: 0.09
   missWindowSec: 0.14
   NoteSpawner: {fileID: 1091155745}
+  songClock: {fileID: 298814442}
 --- !u!1 &1755706901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,8 +1507,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755706901}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76034, y: -0.33901, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07168001, y: -0.028030008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1509,7 +1516,7 @@ Transform:
   - {fileID: 679563232}
   - {fileID: 1581861682}
   - {fileID: 382659381}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1828205099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1824932045
 GameObject:
@@ -1602,6 +1609,41 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1828205098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1828205099}
+  m_Layer: 0
+  m_Name: Scene Logic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1828205099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828205098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.83202, y: -0.31098, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 298814441}
+  - {fileID: 1755706902}
+  - {fileID: 475900892}
+  - {fileID: 1091155746}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1867714948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,15 +1697,13 @@ MonoBehaviour:
   goodWindowSec: 0.09
   missWindowSec: 0.14
   NoteSpawner: {fileID: 1091155745}
+  songClock: {fileID: 298814442}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1091155746}
-  - {fileID: 475900892}
-  - {fileID: 1755706902}
-  - {fileID: 298814441}
   - {fileID: 260163190}
   - {fileID: 221115047}
+  - {fileID: 1828205099}
