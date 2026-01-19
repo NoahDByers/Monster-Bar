@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 
 public enum HitResult
@@ -26,7 +27,7 @@ public class LaneController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private NoteSpawner NoteSpawner;
-    private SongClock songClock;
+    [SerializeField] private SongClock songClock;
 
     private readonly List<NoteController> notes = new List<NoteController>();
     private readonly HashSet<NoteController> tracked = new HashSet<NoteController>();
@@ -39,10 +40,7 @@ public class LaneController : MonoBehaviour
     private void Awake()
     {
         if (NoteSpawner == null)
-            NoteSpawner = FindFirstObjectByType<NoteSpawner>();
-
-        if (NoteSpawner != null)
-            songClock = NoteSpawner.Clock;
+            NoteSpawner = FindFirstObjectByType<NoteSpawner>();       
 
         if (hitFlash == null)
             hitFlash = GetComponentInChildren<HitFlash>(true);
@@ -140,7 +138,10 @@ public class LaneController : MonoBehaviour
     {
         if (notes.Count == 0) return;
 
-        var note = notes[0];
+        int idx = FindClosesNoteIndex(songTimeMs);
+        if (idx < 0 || idx >= notes.Count) return;
+
+        var note = notes[idx];
         float deltaMs = Mathf.Abs(songTimeMs - note.Note.startMs);
 
         float perfectWindowMs = perfectWindowSec * 1000f;
@@ -161,5 +162,38 @@ public class LaneController : MonoBehaviour
         UnregisterNote(note);
         OnJudged?.Invoke(result, deltaMs);
         note.RecycleToPool();
+    }
+
+    private int FindClosesNoteIndex(float songTimeMs)
+    {
+        int count = notes.Count;
+        if (count == 0) return -1;
+
+        //Looking for where startMs >= songTimeMs
+        int lo = 0;
+        int hi = count - 1;
+        while (lo <= hi)
+        {
+            int mid = lo + ((hi - lo) / 2);
+            float t = notes[mid].Note.startMs;
+
+            if (t < songTimeMs)
+                lo = mid + 1;
+            else
+                hi = mid - 1;
+        }
+
+        //lo is the first "after" index, lo - 1 is "before"
+        int after = lo;
+        int before = lo - 1;
+
+        if (before < 0) return after;
+        if (after >= count) return before;
+
+        float dBefore = Mathf.Abs(songTimeMs - notes[before].Note.startMs);
+        float dAfter = Math.Abs(songTimeMs - notes[after].Note.startMs);
+
+        //Tie break towards the earlier note
+        return (dBefore <= dAfter) ? before : after;
     }
 }

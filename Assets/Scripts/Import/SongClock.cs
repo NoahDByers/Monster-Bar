@@ -38,14 +38,4 @@ public class SongClock : MonoBehaviour
         audioSource.PlayScheduled(dspStartTime);
         started = true;
     }
-
-    /// <summary>
-    /// Current song time in milliseconds since scheduled start
-    /// </summary>
-    public float SongTimeMs()
-    {
-        if (!started) return 0f;
-        
-        return (float)((AudioSettings.dspTime - dspStartTime) * 1000.0);
-    }
 }
