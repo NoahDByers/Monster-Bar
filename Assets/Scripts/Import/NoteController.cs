@@ -20,7 +20,14 @@ public class NoteController : MonoBehaviour
     private Camera cam;
     private float worldUnitsPerPixel;
 
+    public ManiaNote Note => note;
+
     public void SetPool(NotePool pool) => this.pool = pool;
+    public void RecycleToPool()
+    {
+        if (pool != null) pool.ReturnToPool(this);
+        else gameObject.SetActive(false);
+    }
 
     // Initialization methods
     private void Awake()

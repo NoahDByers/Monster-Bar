@@ -6,14 +6,16 @@ public class NoteSpawner : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform[] laneSpawnPoints; //Should have one per lane
     [SerializeField] private NotePool notePool;
+    [SerializeField] private LaneController[] laneControllers;
 
     [Header("Timing / Scroll")]
     [SerializeField] private SongClock clock;
     [SerializeField] private float spawnLeadTimeMs = 2000f; //Spawn before the note should be hit
     [SerializeField] private float unitsPerMs = 0.002f; // Scroll speed tuning
-    [SerializeField] private float hitY = -3.5f; // Where the hit line is
+    [SerializeField] private float hitY = -3.5f; // Hit line fallback when no lane hit point is set
  
     private Queue<ManiaNote> queue;
+    public SongClock Clock => clock;
 
     //This function is used to load the chart (aka note queue) from the parsed mania chart
     public void LoadChart(ManiaChart chart)
@@ -45,14 +47,29 @@ public class NoteSpawner : MonoBehaviour
 
         int lane = Mathf.Clamp(note.lane, 0, laneSpawnPoints.Length - 1);
         var laneX = laneSpawnPoints[lane].position.x;
+        float laneHitY = GetLaneHitY(lane);
 
         float songTimeMs = clock.NowMs;
         float timeUntilHitMs = note.startMs - songTimeMs;
 
-        float y = hitY + timeUntilHitMs * unitsPerMs;
+        float y = laneHitY + timeUntilHitMs * unitsPerMs;
 
         var ctrl = notePool.Get();
         ctrl.transform.position = new Vector3(laneX, y, 0f);
-        ctrl.Init(note, clock, laneX, hitY, unitsPerMs);
+        ctrl.Init(note, clock, laneX, laneHitY, unitsPerMs);
+
+        if (laneControllers != null && lane < laneControllers.Length && laneControllers[lane] != null)
+            laneControllers[lane].RegisterNote(ctrl);
+    }
+
+    private float GetLaneHitY(int lane)
+    {
+        if (laneControllers != null && lane < laneControllers.Length && laneControllers[lane] != null)
+        {
+            var hit = laneControllers[lane].HitPoint;
+            if (hit != null) return hit.position.y;
+        }
+
+        return hitY;
     }
 }
