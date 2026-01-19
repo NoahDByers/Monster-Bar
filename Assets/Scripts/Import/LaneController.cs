@@ -112,7 +112,7 @@ public class LaneController : MonoBehaviour
             float deltaMs = songTimeMs - note.Note.startMs;
             if (deltaMs <= missWindowMs) break;
 
-            notes.RemoveAt(0);
+            UnregisterNote(note);
             OnJudged?.Invoke(HitResult.Miss, deltaMs);
             note.RecycleToPool();
         }
@@ -130,25 +130,17 @@ public class LaneController : MonoBehaviour
         float missWindowMs = missWindowSec * 1000f;
 
         HitResult result;
-        if (deltaMs <= perfectWindowMs) {
+        if (deltaMs <= perfectWindowMs) 
             result = HitResult.Perfect;
-            Debug.LogWarning("Perfect");
-        }
-        else if (deltaMs <= goodWindowMs) {
+        else if (deltaMs <= goodWindowMs) 
             result = HitResult.Good;
-            Debug.LogWarning("Good");
-        }
-        else if (deltaMs <= missWindowMs) {
+        else if (deltaMs <= missWindowMs) 
             result = HitResult.Miss;
-            Debug.LogWarning("Miss");
-        }
         else
-        {
-            Debug.LogWarning("Outside of all windows");
             return;
-        }
 
-        notes.RemoveAt(0);
+        Debug.Log(result);
+        UnregisterNote(note);
         OnJudged?.Invoke(result, deltaMs);
         note.RecycleToPool();
     }
