@@ -16,6 +16,8 @@ public class LaneController : MonoBehaviour
     [SerializeField] private int laneIndex;
     [SerializeField] private Key key;
     [SerializeField] private Transform hitPoint;
+    [SerializeField] private HitFlash hitFlash;
+    [SerializeField] private Color laneColor = Color.white;
 
     [Header("Judgement Windows (seconds)")]
     [SerializeField] private float perfectWindowSec = 0.045f;
@@ -41,6 +43,9 @@ public class LaneController : MonoBehaviour
 
         if (NoteSpawner != null)
             songClock = NoteSpawner.Clock;
+
+        if (hitFlash == null)
+            hitFlash = GetComponentInChildren<HitFlash>(true);
     }
 
     public void RegisterNote(NoteController note)
@@ -69,7 +74,13 @@ public class LaneController : MonoBehaviour
         CullMisses(songTimeMs);
 
         if (WasKeyPressed())
+        {
+            hitFlash?.BeginHold();
             JudgeClosest(songTimeMs);
+        }
+
+        if (WasKeyReleased())
+            hitFlash?.EndHold();
     }
 
     private bool WasKeyPressed()
@@ -77,6 +88,13 @@ public class LaneController : MonoBehaviour
         var keyboard = Keyboard.current;
         if (keyboard == null || key == Key.None) return false;
         return keyboard[key].wasPressedThisFrame;
+    }
+
+    private bool WasKeyReleased()
+    {
+        var keyboard = Keyboard.current;
+        if (keyboard == null || key == Key.None) return false;
+        return keyboard[key].wasReleasedThisFrame;
     }
 
     private void SyncNotes()
