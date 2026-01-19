@@ -130,11 +130,21 @@ public class LaneController : MonoBehaviour
         float missWindowMs = missWindowSec * 1000f;
 
         HitResult result;
-        if (deltaMs <= perfectWindowMs) result = HitResult.Perfect;
-        else if (deltaMs <= goodWindowMs) result = HitResult.Good;
-        else if (deltaMs <= missWindowMs) result = HitResult.Miss;
+        if (deltaMs <= perfectWindowMs) {
+            result = HitResult.Perfect;
+            Debug.LogWarning("Perfect");
+        }
+        else if (deltaMs <= goodWindowMs) {
+            result = HitResult.Good;
+            Debug.LogWarning("Good");
+        }
+        else if (deltaMs <= missWindowMs) {
+            result = HitResult.Miss;
+            Debug.LogWarning("Miss");
+        }
         else
         {
+            Debug.LogWarning("Outside of all windows");
             return;
         }
 
