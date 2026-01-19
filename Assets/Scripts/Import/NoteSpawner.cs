@@ -11,7 +11,7 @@ public class NoteSpawner : MonoBehaviour
     [SerializeField] private SongClock clock;
     [SerializeField] private float spawnLeadTimeMs = 2000f; //Spawn before the note should be hit
     [SerializeField] private float unitsPerMs = 0.002f; // Scroll speed tuning
-    [SerializeField] private float hitY = -3.5f; // Where the hit line is
+    [SerializeField] private float hitY = -2f; // Where the hit line is
  
     private Queue<ManiaNote> queue;
 
