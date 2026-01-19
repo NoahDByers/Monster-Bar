@@ -3,6 +3,7 @@ using UnityEngine;
 public class SongClock : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private float visualOffsetMs = 0f;
 
     private double dspStartTime;
     public float NowMs { get; private set; }
@@ -13,7 +14,7 @@ public class SongClock : MonoBehaviour
     private void Update()
     {
         if (!started) return;
-        NowMs = (float)((AudioSettings.dspTime - dspStartTime) * 1000.0);
+        NowMs = (float)((AudioSettings.dspTime - dspStartTime) * 1000.0) - visualOffsetMs;
     }
 
     public void SetAudioSource(AudioSource src)

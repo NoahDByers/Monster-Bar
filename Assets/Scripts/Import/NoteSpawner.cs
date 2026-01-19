@@ -11,8 +11,8 @@ public class NoteSpawner : MonoBehaviour
     [Header("Timing / Scroll")]
     [SerializeField] private SongClock clock;
     [SerializeField] private float spawnLeadTimeMs = 2000f; //Spawn before the note should be hit
-    [SerializeField] private float unitsPerMs = 0.002f; // Scroll speed tuning
     [SerializeField] private float hitY = -2f; // Where the hit line is
+    private float unitsPerMs; // Scroll speed tuning (computed at spawn-time)
  
     private Queue<ManiaNote> queue;
     public SongClock Clock => clock;
@@ -48,6 +48,10 @@ public class NoteSpawner : MonoBehaviour
         int lane = Mathf.Clamp(note.lane, 0, laneSpawnPoints.Length - 1);
         var laneX = laneSpawnPoints[lane].position.x;
         float laneHitY = GetLaneHitY(lane);
+
+        // compute spawn Y for this lane and calculate unitsPerMs at runtime
+        float spawnY = laneSpawnPoints[lane].position.y;
+        unitsPerMs = (spawnY - hitY) / spawnLeadTimeMs;
 
         float songTimeMs = clock.NowMs;
         float timeUntilHitMs = note.startMs - songTimeMs;
