@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class NotePool : MonoBehaviour
 {
@@ -8,6 +11,14 @@ public class NotePool : MonoBehaviour
     [SerializeField] private Transform poolParent;
 
     private readonly Stack<NoteController> pool = new Stack<NoteController>();
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (notePrefab != null) return;
+        notePrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/NotePrefab.prefab");
+    }
+#endif
 
     private void Awake()
     {
