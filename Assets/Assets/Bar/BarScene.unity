@@ -2011,7 +2011,7 @@ MonoBehaviour:
   musicSource: {fileID: 451237887}
   endPanel: {fileID: 1502367859}
   nextButton: {fileID: 1937695915}
-  nextSceneBuildIndex: -1
+  nextSceneBuildIndex: 1
 --- !u!1 &1110677928
 GameObject:
   m_ObjectHideFlags: 0
