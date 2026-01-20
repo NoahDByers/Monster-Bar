@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 
 public enum HitResult
@@ -11,7 +10,7 @@ public enum HitResult
     Miss
 }
 
-public class LaneController : MonoBehaviour
+public  partial class LaneController : MonoBehaviour
 {
     [Header("Lane")]
     [SerializeField] private int laneIndex;
@@ -28,6 +27,9 @@ public class LaneController : MonoBehaviour
     [Header("References")]
     [SerializeField] private NoteSpawner NoteSpawner;
     [SerializeField] private SongClock songClock;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource hitSound;
 
     private readonly List<NoteController> notes = new List<NoteController>();
     private readonly HashSet<NoteController> tracked = new HashSet<NoteController>();
@@ -70,29 +72,6 @@ public class LaneController : MonoBehaviour
 
         SyncNotes();
         CullMisses(songTimeMs);
-
-        if (WasKeyPressed())
-        {
-            hitFlash?.BeginHold();
-            JudgeClosest(songTimeMs);
-        }
-
-        if (WasKeyReleased())
-            hitFlash?.EndHold();
-    }
-
-    private bool WasKeyPressed()
-    {
-        var keyboard = Keyboard.current;
-        if (keyboard == null || key == Key.None) return false;
-        return keyboard[key].wasPressedThisFrame;
-    }
-
-    private bool WasKeyReleased()
-    {
-        var keyboard = Keyboard.current;
-        if (keyboard == null || key == Key.None) return false;
-        return keyboard[key].wasReleasedThisFrame;
     }
 
     private void SyncNotes()
@@ -106,15 +85,6 @@ public class LaneController : MonoBehaviour
                 notes.RemoveAt(i);
                 if (note != null) tracked.Remove(note);
             }
-        }
-
-        // Fallback: discover active notes in this lane even if spawner registration was missed.
-        var activeNotes = FindObjectsOfType<NoteController>(false);
-        foreach (var note in activeNotes)
-        {
-            if (note.Note.lane != laneIndex) continue;
-            if (tracked.Contains(note)) continue;
-            RegisterNote(note);
         }
     }
 
@@ -149,12 +119,18 @@ public class LaneController : MonoBehaviour
         float missWindowMs = missWindowSec * 1000f;
 
         HitResult result;
-        if (deltaMs <= perfectWindowMs) 
+        if (deltaMs <= perfectWindowMs) {
             result = HitResult.Perfect;
-        else if (deltaMs <= goodWindowMs) 
+            hitSound.Play();
+        }
+        else if (deltaMs <= goodWindowMs) {
             result = HitResult.Good;
-        else if (deltaMs <= missWindowMs) 
+            hitSound.Play();
+        }
+        else if (deltaMs <= missWindowMs)
+        {
             result = HitResult.Miss;
+        } 
         else
             return;
 
@@ -195,5 +171,23 @@ public class LaneController : MonoBehaviour
 
         //Tie break towards the earlier note
         return (dBefore <= dAfter) ? before : after;
+    }
+}
+
+public partial class LaneController
+{
+    public void OnLaneAction(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            hitFlash.BeginHold();
+            if (songClock != null && songClock.Started)
+                JudgeClosest(songClock.NowMs);
+        }
+
+        if (ctx.canceled)
+        {
+            hitFlash.EndHold();
+        }
     }
 }
