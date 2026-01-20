@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 
 public enum HitResult
@@ -31,6 +30,13 @@ public class LaneController : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] private AudioSource hitSound;
+
+    [Header("Input System")]
+    [SerializeField] private InputActionReference inputActionReference;
+    private InputAction _action;
+    private bool _pressedThisFrame;
+    private bool _releasedThisFrame;
+    private bool _isHeld;
 
     private readonly List<NoteController> notes = new List<NoteController>();
     private readonly HashSet<NoteController> tracked = new HashSet<NoteController>();
@@ -74,28 +80,48 @@ public class LaneController : MonoBehaviour
         SyncNotes();
         CullMisses(songTimeMs);
 
-        if (WasKeyPressed())
+        if (_pressedThisFrame)
         {
-            hitFlash?.BeginHold();
+            hitFlash.BeginHold();
             JudgeClosest(songTimeMs);
         }
 
-        if (WasKeyReleased())
-            hitFlash?.EndHold();
+        if (_releasedThisFrame)
+        {
+            hitFlash.EndHold();
+        }
+
+        //Flags are reset at the end of the frame to avoid the input counting twice
+        _pressedThisFrame = false;
+        _releasedThisFrame = false;
     }
 
-    private bool WasKeyPressed()
+    private void OnEnable()
     {
-        var keyboard = Keyboard.current;
-        if (keyboard == null || key == Key.None) return false;
-        return keyboard[key].wasPressedThisFrame;
+        if (inputActionReference != null) return;
+
+        _action = inputActionReference.action;
+        if (_action == null) 
+            return;
+
+        _action.Enable();
+
+        // "Button" style actions
+        _action.performed += ctx => Debug.Log($"{name}: PERFORMED {_action.name} device={ctx.control.device}");
+        _action.canceled  += ctx => Debug.Log($"{name}: CANCELED {_action.name} device={ctx.control.device}");
+
     }
 
-    private bool WasKeyReleased()
+    private void OnActionPerformed(InputAction.CallbackContext ctx)
     {
-        var keyboard = Keyboard.current;
-        if (keyboard == null || key == Key.None) return false;
-        return keyboard[key].wasReleasedThisFrame;
+        _pressedThisFrame = true;
+        _isHeld = true;
+    }
+
+    private void OnActionCanceled(InputAction.CallbackContext ctx)
+    {
+        _releasedThisFrame = true;
+        _isHeld = false;
     }
 
     private void SyncNotes()
@@ -109,15 +135,6 @@ public class LaneController : MonoBehaviour
                 notes.RemoveAt(i);
                 if (note != null) tracked.Remove(note);
             }
-        }
-
-        // Fallback: discover active notes in this lane even if spawner registration was missed.
-        var activeNotes = FindObjectsOfType<NoteController>(false);
-        foreach (var note in activeNotes)
-        {
-            if (note.Note.lane != laneIndex) continue;
-            if (tracked.Contains(note)) continue;
-            RegisterNote(note);
         }
     }
 
