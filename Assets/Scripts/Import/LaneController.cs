@@ -10,7 +10,7 @@ public enum HitResult
     Miss
 }
 
-public class LaneController : MonoBehaviour
+public  partial class LaneController : MonoBehaviour
 {
     [Header("Lane")]
     [SerializeField] private int laneIndex;
@@ -30,13 +30,6 @@ public class LaneController : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] private AudioSource hitSound;
-
-    [Header("Input System")]
-    [SerializeField] private InputActionReference inputActionReference;
-    private InputAction _action;
-    private bool _pressedThisFrame;
-    private bool _releasedThisFrame;
-    private bool _isHeld;
 
     private readonly List<NoteController> notes = new List<NoteController>();
     private readonly HashSet<NoteController> tracked = new HashSet<NoteController>();
@@ -79,49 +72,6 @@ public class LaneController : MonoBehaviour
 
         SyncNotes();
         CullMisses(songTimeMs);
-
-        if (_pressedThisFrame)
-        {
-            hitFlash.BeginHold();
-            JudgeClosest(songTimeMs);
-        }
-
-        if (_releasedThisFrame)
-        {
-            hitFlash.EndHold();
-        }
-
-        //Flags are reset at the end of the frame to avoid the input counting twice
-        _pressedThisFrame = false;
-        _releasedThisFrame = false;
-    }
-
-    private void OnEnable()
-    {
-        if (inputActionReference != null) return;
-
-        _action = inputActionReference.action;
-        if (_action == null) 
-            return;
-
-        _action.Enable();
-
-        // "Button" style actions
-        _action.performed += ctx => Debug.Log($"{name}: PERFORMED {_action.name} device={ctx.control.device}");
-        _action.canceled  += ctx => Debug.Log($"{name}: CANCELED {_action.name} device={ctx.control.device}");
-
-    }
-
-    private void OnActionPerformed(InputAction.CallbackContext ctx)
-    {
-        _pressedThisFrame = true;
-        _isHeld = true;
-    }
-
-    private void OnActionCanceled(InputAction.CallbackContext ctx)
-    {
-        _releasedThisFrame = true;
-        _isHeld = false;
     }
 
     private void SyncNotes()
@@ -221,5 +171,23 @@ public class LaneController : MonoBehaviour
 
         //Tie break towards the earlier note
         return (dBefore <= dAfter) ? before : after;
+    }
+}
+
+public partial class LaneController
+{
+    public void OnLaneAction(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            hitFlash.BeginHold();
+            if (songClock != null && songClock.Started)
+                JudgeClosest(songClock.NowMs);
+        }
+
+        if (ctx.canceled)
+        {
+            hitFlash.EndHold();
+        }
     }
 }
