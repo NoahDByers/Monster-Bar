@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SongClock
   audioSource: {fileID: 451237887}
-  visualOffsetMs: 100
+  visualOffsetMs: 115
 --- !u!1 &382659380
 GameObject:
   m_ObjectHideFlags: 0
