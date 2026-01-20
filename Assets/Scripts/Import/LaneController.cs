@@ -29,6 +29,9 @@ public class LaneController : MonoBehaviour
     [SerializeField] private NoteSpawner NoteSpawner;
     [SerializeField] private SongClock songClock;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource hitSound;
+
     private readonly List<NoteController> notes = new List<NoteController>();
     private readonly HashSet<NoteController> tracked = new HashSet<NoteController>();
 
@@ -149,12 +152,18 @@ public class LaneController : MonoBehaviour
         float missWindowMs = missWindowSec * 1000f;
 
         HitResult result;
-        if (deltaMs <= perfectWindowMs) 
+        if (deltaMs <= perfectWindowMs) {
             result = HitResult.Perfect;
-        else if (deltaMs <= goodWindowMs) 
+            hitSound.Play();
+        }
+        else if (deltaMs <= goodWindowMs) {
             result = HitResult.Good;
-        else if (deltaMs <= missWindowMs) 
+            hitSound.Play();
+        }
+        else if (deltaMs <= missWindowMs)
+        {
             result = HitResult.Miss;
+        } 
         else
             return;
 
