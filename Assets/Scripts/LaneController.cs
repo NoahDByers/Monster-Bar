@@ -31,6 +31,7 @@ public  partial class LaneController : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource hitSound;
 
+    private SongStatManager songStatManager;
     private readonly List<NoteController> notes = new List<NoteController>();
     private readonly HashSet<NoteController> tracked = new HashSet<NoteController>();
 
@@ -41,11 +42,9 @@ public  partial class LaneController : MonoBehaviour
 
     private void Awake()
     {
-        if (NoteSpawner == null)
-            NoteSpawner = FindFirstObjectByType<NoteSpawner>();       
-
-        if (hitFlash == null)
-            hitFlash = GetComponentInChildren<HitFlash>(true);
+        if (NoteSpawner == null) NoteSpawner = FindFirstObjectByType<NoteSpawner>();       
+        if (songStatManager == null) songStatManager = FindFirstObjectByType<SongStatManager>();
+        if (hitFlash == null) hitFlash = GetComponentInChildren<HitFlash>(true);
     }
 
     public void RegisterNote(NoteController note)
@@ -99,6 +98,7 @@ public  partial class LaneController : MonoBehaviour
             if (deltaMs <= missWindowMs) break;
 
             UnregisterNote(note);
+            songStatManager.RegisterHit(HitResult.Miss);
             OnJudged?.Invoke(HitResult.Miss, deltaMs);
             note.RecycleToPool();
         }
@@ -134,7 +134,7 @@ public  partial class LaneController : MonoBehaviour
         else
             return;
 
-        Debug.Log(result);
+        songStatManager.RegisterHit(result);
         UnregisterNote(note);
         OnJudged?.Invoke(result, deltaMs);
         note.RecycleToPool();

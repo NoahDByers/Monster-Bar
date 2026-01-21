@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Reflection;
+using TMPro;
 
 public class SongEnd : MonoBehaviour
 {
@@ -10,19 +12,25 @@ public class SongEnd : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject endPanel;
     [SerializeField] private Button nextButton;
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text accuracyText;
+    [SerializeField] private TMP_Text maxComboText;
+    [SerializeField] private TMP_Text perfectCountText;
+    [SerializeField] private TMP_Text goodCountText;
+    [SerializeField] private TMP_Text missCountText;
 
     [Header("Scene")]
     [Tooltip("Leave -1 to lead next build index")]
     [SerializeField] private int nextSceneBuildIndex = -1;
-
+    
+    private SongStatManager songStatManager;
     private bool _shown;
 
     private void Awake()
     {
+        if (!songStatManager) songStatManager = FindFirstObjectByType<SongStatManager>();
         if (endPanel) endPanel.SetActive(false);
-
-        if (nextButton)
-            nextButton.onClick.AddListener(LoadNextScene);
+        if (nextButton) nextButton.onClick.AddListener(LoadNextScene);
     }
 
     private void Update()
@@ -39,12 +47,18 @@ public class SongEnd : MonoBehaviour
     private void ShowEndPanel()
     {
         _shown = true;
+        SongStats songStats = songStatManager.getData();
 
-        if (endPanel)
-            endPanel.SetActive(true);
+        scoreText.text = songStats.score.ToString();
+        accuracyText.text = songStats.accuracy.ToString();
+        maxComboText.text = songStats.maxCombo.ToString();
+        perfectCountText.text = songStats.perfectCount.ToString();
+        goodCountText.text = songStats.goodCount.ToString();
+        missCountText.text = songStats.missCount.ToString();
 
-        if (nextButton)
-            nextButton.Select();
+        if (endPanel) endPanel.SetActive(true);
+        if (nextButton) nextButton.Select();
+
     }
 
     public void LoadNextScene()
