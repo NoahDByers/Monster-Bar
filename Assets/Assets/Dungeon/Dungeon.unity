@@ -207,6 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   speed: 5
+  spriteRenderer: {fileID: 292534744}
+  animator: {fileID: 292534741}
 --- !u!114 &292534743
 MonoBehaviour:
   m_ObjectHideFlags: 0
