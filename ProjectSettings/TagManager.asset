@@ -44,5 +44,22 @@ TagManager:
   - name: Notes
     uniqueID: 2131909213
     locked: 0
+  - name: Background
+    uniqueID: 3639728165
+    locked: 0
+  - name: Ground
+    uniqueID: 3173349419
+    locked: 0
+  - name: Foreground
+    uniqueID: 1320877927
+    locked: 0
+  - name: 
+    uniqueID: 1797073161
+    locked: 0
   m_RenderingLayers:
   - Default
+  - Foreground
+  - Ground
+  - Background 1
+  - Background 2
+  - Background 3
