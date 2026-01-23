@@ -14,13 +14,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "f99a7ce5-1534-4927-b40f-1b723fbf5916",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
-                    "id": "3b787f5f-4c93-41c8-84b0-5638a0ef9d17",
-                    "path": "2DVector",
+                    "name": "X Axis",
+                    "id": "79bba8f4-8eeb-49ae-af2e-46f26dbc00f5",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -29,30 +38,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "570b4423-b811-401a-9de6-8e8e28eaa14b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "c6d7778c-f479-4323-940f-b7bf82002e0f",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "76f386ba-69be-496f-b787-a35953242ea0",
+                    "name": "negative",
+                    "id": "0a32077f-e6cf-4c55-82d2-30e4630803e7",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -62,8 +49,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "da4c108b-cf06-44ae-8cb4-9b7cbd8c1d0b",
+                    "name": "positive",
+                    "id": "8af48632-3248-493d-924d-7153abe5a30d",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -73,9 +60,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "1e8c8255-be10-477a-8950-b7af1fd108e6",
-                    "path": "2DVector",
+                    "name": "X Axis",
+                    "id": "3d08c1c0-971b-4cc4-9929-b08f9f59a5c9",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -84,30 +71,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "bd9eca70-5cd9-4c35-952c-f65845fb4fed",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "cf19b03b-ffa1-4683-8fc3-690751d1325c",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "6edb37fc-4d3a-4c7a-a3ca-2516e8cc4187",
+                    "name": "negative",
+                    "id": "e188d88c-a4d3-4651-a52f-bfacbf81f461",
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
@@ -117,8 +82,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "467d98ff-a530-4266-8eea-88a97e108c61",
+                    "name": "positive",
+                    "id": "c37cb473-cfdf-440c-81e5-3c638959070b",
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
@@ -126,6 +91,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "141d1530-4d3f-43fb-8a6e-7debc20eac00",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8818e533-0f44-47b4-a296-6c31aef4b019",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
