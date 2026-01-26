@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [Header("Player")]
-    [SerializeField]private Transform playerTransform;
+    [Header("Audio")]
+    [SerializeField] private AudioSource musicSource;
 
-    [Header("Interactable Objects")]
-    [SerializeField] private GameObject interactableObjects;
+    void Start()
+    {
+        if (musicSource == null)
+        {
+            Debug.LogError("GameController: Music AudioSource is not assigned.");
+        }
+
+        musicSource.Play();
+    }
 
     
 }
