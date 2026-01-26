@@ -1321,6 +1321,7 @@ GameObject:
   - component: {fileID: 292534747}
   - component: {fileID: 292534746}
   - component: {fileID: 292534749}
+  - component: {fileID: 292534750}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1366,6 +1367,7 @@ MonoBehaviour:
   _acceleration: 40
   _deceleration: 50
   rigidBody: {fileID: 292534747}
+  isRunning: 0
   _dashSpeed: 15
   _dashDuration: 0.1
   _dashCooldown: 1
@@ -1376,6 +1378,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   maxJumpCount: 1
+  jumpRing: {fileID: 0}
+  isGrounded: 0
+  doubleJumpRingPrefab: {fileID: 649849179317877771, guid: 4d5be8275b0ced349bb6436e256d55ce, type: 3}
+  ringOffset: {x: 0.034, y: 4}
   spriteRenderer: {fileID: 292534744}
   animator: {fileID: 292534741}
 --- !u!114 &292534743
@@ -1535,7 +1541,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1121617877
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9214755426186723972, guid: 60bb8b2c54f760e458e968a67c445b3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1658,6 +1664,23 @@ MonoBehaviour:
   inventory: {fileID: 292534748}
   slotParent: {fileID: 1952895247}
   slotPrefab: {fileID: 5388061772844824472, guid: f5248e153fbf9f641a9f22b9df8519f7, type: 3}
+--- !u!114 &292534750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292534740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7e3f74a41df8d43a5b638551d10eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFootsteps
+  footstepSound: {fileID: 8300000, guid: 3682dc14aa572f945868899fe41936dc, type: 3}
+  player: {fileID: 292534742}
+  holdTime: 0.4
+  audioManager: {fileID: 1426194752}
+  volume: 0.3
 --- !u!1 &351823722
 GameObject:
   m_ObjectHideFlags: 0
@@ -9687,6 +9710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1426194750}
   - component: {fileID: 1426194751}
+  - component: {fileID: 1426194752}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -9722,6 +9746,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   musicSource: {fileID: 1145483803}
+  audioManager: {fileID: 1426194752}
+--- !u!114 &1426194752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426194749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d9def93dcf37746a1d7048cd0b83f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
 --- !u!1 &1491126745
 GameObject:
   m_ObjectHideFlags: 0
@@ -14272,7 +14309,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1121617877
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

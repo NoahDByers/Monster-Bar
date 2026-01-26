@@ -4,6 +4,7 @@ public class GameController : MonoBehaviour
 {
     [Header("Audio")]
     [SerializeField] private AudioSource musicSource;
+    [SerializeField]private AudioManager audioManager;
 
     void Start()
     {

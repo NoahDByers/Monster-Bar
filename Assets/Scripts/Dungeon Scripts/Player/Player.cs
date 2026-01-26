@@ -10,6 +10,7 @@ public partial class Player : MonoBehaviour
     [SerializeField] private float _deceleration = 20f;
     [SerializeField] private Rigidbody2D rigidBody;
     private float moveX;
+    public bool isRunning = false;
 
     [Header("Dash")]
     [SerializeField] private float _dashSpeed = 15f;
@@ -25,8 +26,13 @@ public partial class Player : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.15f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private int maxJumpCount = 1;
+    [SerializeField] private GameObject jumpRing;
     private int jumpCount = 0;
-    private bool isGrounded;
+    public bool isGrounded;
+
+    [Header("Double Jump FX")]
+    [SerializeField] private GameObject doubleJumpRingPrefab;
+    [SerializeField] private Vector2 ringOffset = new Vector2(0f, -0.5f);
 
     [Header("Animation")]
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -43,7 +49,7 @@ public partial class Player : MonoBehaviour
         spriteRenderer.flipX = facingDirection < 0;
 
         // Animation states
-        bool isRunning = Mathf.Abs(velocity.x) > 0.05f;
+        isRunning = Mathf.Abs(velocity.x) > 0.05f;
         bool isJumping = velocity.y > 0.05f;
         bool isFalling = velocity.y < -0.05f;
         bool isIdle = !isRunning && !isJumping && !isFalling;
@@ -138,6 +144,7 @@ public partial class Player : MonoBehaviour
         }
         else if (jumpCount < maxJumpCount)
         {
+            SpawnDoubleJumpRing();
             applyJumpForce();
             jumpCount++;
         }
@@ -158,6 +165,12 @@ public partial class Player : MonoBehaviour
             groundCheckRadius,
             groundLayer
         );
+    }
+
+    void SpawnDoubleJumpRing()
+    {
+        Vector2 spawnPos = (Vector2)transform.position + ringOffset;
+        Instantiate(doubleJumpRingPrefab, spawnPos, Quaternion.identity);
     }
 
     public void OnAttack(InputAction.CallbackContext context)
