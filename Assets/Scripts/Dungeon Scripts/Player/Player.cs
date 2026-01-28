@@ -45,8 +45,7 @@ public partial class Player : MonoBehaviour
     {
         velocity = rigidBody.linearVelocity;
 
-        // Flip sprite
-        spriteRenderer.flipX = facingDirection < 0;
+        FaceDirection(facingDirection);
 
         // Animation states
         isRunning = Mathf.Abs(velocity.x) > 0.05f;
@@ -173,9 +172,10 @@ public partial class Player : MonoBehaviour
         Instantiate(doubleJumpRingPrefab, spawnPos, Quaternion.identity);
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
+    void FaceDirection(float direction)
     {
-        if (context.performed)
-            animator.SetTrigger("Light Attack");
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Sign(direction) * Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
 }
