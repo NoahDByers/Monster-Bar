@@ -1,12 +1,18 @@
-using System;
+using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IsDamageable
 {
     [Header("Required Components")]
     [SerializeField] private GameObject player;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
+
+    [Space]
+    [Header("Enemy Settings")]
+    public float hp = 20f;
+    [SerializeField] private float deathTime = 1;
 
     [Space]
     [Header("AI Settings")]
@@ -33,6 +39,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private Movement movement;
+    private bool isDead = false;
 
     void Awake()
     {
@@ -77,7 +84,7 @@ public class Enemy : MonoBehaviour
     {
         float deltaX = player.transform.position.x - transform.position.x;
 
-        if (Math.Abs(deltaX) < 0.1f)
+        if (Mathf.Abs(deltaX) < 0.1f)
         {
             movement.SetMoveInput(0f);
             return;
@@ -92,5 +99,30 @@ public class Enemy : MonoBehaviour
         float sqrTrigger = triggerDistance * triggerDistance;
 
         return sqrDistance < sqrTrigger;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (isDead)
+            return;
+
+        hp -= damage;
+        animator.SetTrigger("Hurt");
+
+        if (hp <= 0f) {
+            isDead = true;
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        animator.SetTrigger("Death");
+        movement.SetMoveInput(0);
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 }
