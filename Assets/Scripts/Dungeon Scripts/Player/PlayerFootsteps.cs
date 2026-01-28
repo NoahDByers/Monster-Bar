@@ -20,7 +20,7 @@ public class PlayerFootsteps : MonoBehaviour
         {
             if (player.isRunning && player.isGrounded)
             {
-                audioManager.PlaySFX(footstepSound, 0.5f);
+                audioManager.PlaySFX(footstepSound, volume);
             }
 
             yield return new WaitForSeconds(holdTime);
