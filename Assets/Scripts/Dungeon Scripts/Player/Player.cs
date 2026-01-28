@@ -9,16 +9,19 @@ public partial class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
 
+    [Space]
     [Header("Movement Settings")] 
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 20f;
     [SerializeField] private float deceleration = 20f;
 
+    [Space]
     [Header("Dash")] 
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
 
+    [Space]
     [Header("Jump")] 
     [SerializeField] private float jumpForce = 12f; 
     [SerializeField] private int maxJumpCount = 1;
@@ -26,6 +29,7 @@ public partial class Player : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.15f;
     [SerializeField] private LayerMask groundLayer;
 
+    [Space]
     public bool isGrounded = false;
     public bool isRunning = false;
 
