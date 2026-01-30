@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f521bcb7edb605147868bb331efa126b, type: 3}
+  m_Name: ShiftSetLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::ShiftSetLibrary
+  sets:
+  - {fileID: 11400000, guid: c1eed696ebe07a54b9d219f8e492b97f, type: 2}
+  - {fileID: 11400000, guid: af8b913dc78a39e4797067416742eaa7, type: 2}
+  - {fileID: 11400000, guid: 380b0e41e0b76474894c1e937309511e, type: 2}

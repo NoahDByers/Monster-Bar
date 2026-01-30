@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8ce6709980e60478927bd59f800073, type: 3}
+  m_Name: OnlyCrossingFIelds
+  m_EditorClassIdentifier: Assembly-CSharp::ShiftSet
+  setId: onlycrossingfIelds
+  displayName: Only Crossing FIelds
+  coverArt: {fileID: 9021068484690781117, guid: af2fe5feacbd5094fa2e09dd12131559, type: 3}
+  songSet:
+  - {fileID: 11400000, guid: fb836a08cd307e34da20e536a457b20c, type: 2}
+  difficulty: 0
+  allowDifficultySelect: 1
+  failEndsShift: 1
+  lives: 0

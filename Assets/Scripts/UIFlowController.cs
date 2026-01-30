@@ -6,6 +6,7 @@ public enum UIState
     Title,
     Hub,
     BarMenu,
+    ShiftMenu,
     DungeonMenu
 }
 
@@ -15,6 +16,7 @@ public class UIFlowController : MonoBehaviour
     [SerializeField] private GameObject screenTitle;
     [SerializeField] private GameObject screenHub;
     [SerializeField] private GameObject screenBarMenu;
+    [SerializeField] private GameObject screenShiftMenu;
     [SerializeField] private GameObject screenDungeonMenu;
 
     private readonly Stack<UIState> history = new();
@@ -52,6 +54,7 @@ public class UIFlowController : MonoBehaviour
         screenTitle.SetActive(state == UIState.Title);
         screenHub.SetActive(state == UIState.Hub);
         screenBarMenu.SetActive(state == UIState.BarMenu);
+        screenShiftMenu.SetActive(state == UIState.ShiftMenu);
         screenDungeonMenu.SetActive(state == UIState.DungeonMenu);
     }
 
@@ -59,4 +62,5 @@ public class UIFlowController : MonoBehaviour
     public void GoHub() => GoTo(UIState.Hub, true);
     public void GoBarMenu() => GoTo(UIState.BarMenu, false);
     public void GoDungeonMenu() => GoTo(UIState.DungeonMenu, false);
+    public void GoShiftMenu() => GoTo(UIState.ShiftMenu, false);
 }
