@@ -1,0 +1,770 @@
+fileFormatVersion: 2
+guid: c4334c92d3d3e8d45befcdefead7f392
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1009433452303912481
+    second: Flame Slam_0
+  - first:
+      213: -8380291717291462677
+    second: Flame Slam_1
+  - first:
+      213: 1625739147267775392
+    second: Flame Slam_2
+  - first:
+      213: 7407342153825682545
+    second: Flame Slam_3
+  - first:
+      213: 2539159552743294565
+    second: Flame Slam_4
+  - first:
+      213: 1900742093179837343
+    second: Flame Slam_5
+  - first:
+      213: -1934965588686801280
+    second: Flame Slam_6
+  - first:
+      213: -4028423152166298948
+    second: Flame Slam_7
+  - first:
+      213: 8871270132032603702
+    second: Flame Slam_8
+  - first:
+      213: 9147407130536637898
+    second: Flame Slam_9
+  - first:
+      213: 2337495365593106631
+    second: Flame Slam_10
+  - first:
+      213: -7480039602419647974
+    second: Flame Slam_11
+  - first:
+      213: 6141627079904916235
+    second: Flame Slam_12
+  - first:
+      213: -8445295089992967493
+    second: Flame Slam_13
+  - first:
+      213: -956088040173515939
+    second: Flame Slam_14
+  - first:
+      213: -7131217743614294070
+    second: Flame Slam_15
+  - first:
+      213: 3650145033413158562
+    second: Flame Slam_16
+  - first:
+      213: -3679635507029116340
+    second: Flame Slam_17
+  - first:
+      213: 967076369983420826
+    second: Flame Slam_18
+  - first:
+      213: -432960073193971997
+    second: Flame Slam_19
+  - first:
+      213: 6017867072490820751
+    second: Flame Slam_20
+  - first:
+      213: -2142885571522277742
+    second: Flame Slam_21
+  - first:
+      213: 6884405530727973660
+    second: Flame Slam_22
+  - first:
+      213: -4667597342826521276
+    second: Flame Slam_23
+  - first:
+      213: -1917676062215753410
+    second: Flame Slam_24
+  - first:
+      213: -4211983626750035623
+    second: Flame Slam_25
+  - first:
+      213: 3427863045785406618
+    second: Flame Slam_26
+  - first:
+      213: 627738813531083273
+    second: Flame Slam_27
+  - first:
+      213: 4469759660132512972
+    second: Flame Slam_28
+  - first:
+      213: -5447673306293367586
+    second: Flame Slam_29
+  - first:
+      213: -1481652842668118456
+    second: Flame Slam_30
+  - first:
+      213: -2065395724562507428
+    second: Flame Slam_31
+  - first:
+      213: 4319646916401210183
+    second: Flame Slam_32
+  - first:
+      213: -3361446831128518465
+    second: Flame Slam_33
+  - first:
+      213: -6390174120723681467
+    second: Flame Slam_34
+  - first:
+      213: 2630299348546557110
+    second: Flame Slam_35
+  - first:
+      213: -1045617025915918684
+    second: Flame Slam_36
+  - first:
+      213: 4907318221126083103
+    second: Flame Slam_37
+  - first:
+      213: 1858296392768690895
+    second: Flame Slam_38
+  - first:
+      213: 7214077347077424720
+    second: Flame Slam_39
+  - first:
+      213: 3112498059748655255
+    second: Flame Slam_40
+  - first:
+      213: -6638245492960243143
+    second: Flame Slam_41
+  - first:
+      213: -6226542247866432672
+    second: Flame Slam_42
+  - first:
+      213: -4838533756765485554
+    second: Flame Slam_43
+  - first:
+      213: -4937518270710237440
+    second: Flame Slam_44
+  - first:
+      213: -1225168631834369903
+    second: Flame Slam_45
+  - first:
+      213: -6328402657802237607
+    second: Flame Slam_46
+  - first:
+      213: -119117186270104197
+    second: Flame Slam_47
+  - first:
+      213: 861102672153389997
+    second: Flame Slam_48
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FlameSlam0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 63
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12e88fc606a320e00800000000000000
+      internalID: 1009433452303912481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam1
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 63
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: befa1b4751933bb80800000000000000
+      internalID: -8380291717291462677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam11
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 63
+        width: 115
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03f6a81a417b3550800000000000000
+      internalID: 6141627079904916235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam12
+      rect:
+        serializedVersion: 2
+        x: 1738
+        y: 63
+        width: 126
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bba5e995cd84cca80800000000000000
+      internalID: -8445295089992967493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam13
+      rect:
+        serializedVersion: 2
+        x: 1878
+        y: 63
+        width: 130
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4a7d9c700f4fecc0800000000000000
+      internalID: -3679635507029116340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam14
+      rect:
+        serializedVersion: 2
+        x: 2021
+        y: 63
+        width: 149
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ee985b7b11ddf9f0800000000000000
+      internalID: -432960073193971997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam15
+      rect:
+        serializedVersion: 2
+        x: 2180
+        y: 63
+        width: 132
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84d559e732c38350800000000000000
+      internalID: 6017867072490820751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam16
+      rect:
+        serializedVersion: 2
+        x: 2324
+        y: 63
+        width: 131
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29eca1b1de0f242e0800000000000000
+      internalID: -2142885571522277742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam17
+      rect:
+        serializedVersion: 2
+        x: 2512
+        y: 63
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1386c4ea525a8f50800000000000000
+      internalID: 6884405530727973660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam18
+      rect:
+        serializedVersion: 2
+        x: 2656
+        y: 63
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44d944a52fc593fb0800000000000000
+      internalID: -4667597342826521276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam2
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 63
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e313c5d18cb0365e0800000000000000
+      internalID: -1917676062215753410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam3
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 63
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9597dcf15370c85c0800000000000000
+      internalID: -4211983626750035623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam4
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 63
+        width: 22
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c4abe4747329f20800000000000000
+      internalID: 3427863045785406618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam5
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 63
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902de30002d26b800800000000000000
+      internalID: 627738813531083273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam6
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 63
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc4b195aab6c70e30800000000000000
+      internalID: 4469759660132512972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam7
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 63
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc810eadf9f564b0800000000000000
+      internalID: -5447673306293367586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam8
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 63
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84ea158f69c107be0800000000000000
+      internalID: -1481652842668118456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam9
+      rect:
+        serializedVersion: 2
+        x: 1356
+        y: 63
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5957dc088d3653e0800000000000000
+      internalID: -2065395724562507428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlameSlam10
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 63
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743a437ebf772fb30800000000000000
+      internalID: 4319646916401210183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: cfcfbd58a70c16646a2c2157ea9d98cc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Flame Slam_10: 2337495365593106631
+      Flame Slam_11: -7480039602419647974
+      Flame Slam_14: -956088040173515939
+      Flame Slam_15: -7131217743614294070
+      Flame Slam_16: 3650145033413158562
+      Flame Slam_18: 967076369983420826
+      Flame Slam_2: 1625739147267775392
+      Flame Slam_3: 7407342153825682545
+      Flame Slam_33: -3361446831128518465
+      Flame Slam_34: -6390174120723681467
+      Flame Slam_35: 2630299348546557110
+      Flame Slam_36: -1045617025915918684
+      Flame Slam_37: 4907318221126083103
+      Flame Slam_38: 1858296392768690895
+      Flame Slam_39: 7214077347077424720
+      Flame Slam_4: 2539159552743294565
+      Flame Slam_40: 3112498059748655255
+      Flame Slam_41: -6638245492960243143
+      Flame Slam_42: -6226542247866432672
+      Flame Slam_43: -4838533756765485554
+      Flame Slam_44: -4937518270710237440
+      Flame Slam_45: -1225168631834369903
+      Flame Slam_46: -6328402657802237607
+      Flame Slam_47: -119117186270104197
+      Flame Slam_48: 861102672153389997
+      Flame Slam_5: 1900742093179837343
+      Flame Slam_6: -1934965588686801280
+      Flame Slam_7: -4028423152166298948
+      Flame Slam_8: 8871270132032603702
+      Flame Slam_9: 9147407130536637898
+      FlameSlam0: 1009433452303912481
+      FlameSlam1: -8380291717291462677
+      FlameSlam10: 4319646916401210183
+      FlameSlam11: 6141627079904916235
+      FlameSlam12: -8445295089992967493
+      FlameSlam13: -3679635507029116340
+      FlameSlam14: -432960073193971997
+      FlameSlam15: 6017867072490820751
+      FlameSlam16: -2142885571522277742
+      FlameSlam17: 6884405530727973660
+      FlameSlam18: -4667597342826521276
+      FlameSlam2: -1917676062215753410
+      FlameSlam3: -4211983626750035623
+      FlameSlam4: 3427863045785406618
+      FlameSlam5: 627738813531083273
+      FlameSlam6: 4469759660132512972
+      FlameSlam7: -5447673306293367586
+      FlameSlam8: -1481652842668118456
+      FlameSlam9: -2065395724562507428
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,8 +3,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public partial class Player : MonoBehaviour
+public partial class Player : MonoBehaviour, IsDamageable
 {   
+    [Header("Player Settings")]
+    [SerializeField] float hp;
+
     [Header("Required Components")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
@@ -64,6 +67,11 @@ public partial class Player : MonoBehaviour
     void FixedUpdate()
     {
         movement.FixedTick();
+
+        if (hp <= 0)
+        {
+            Die();
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -87,5 +95,20 @@ public partial class Player : MonoBehaviour
     {
         isGrounded = movement.isGrounded;
         isRunning = movement.isRunning;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        hp -= damage;
+    }
+
+    public void Die()
+    {
+        animator.SetTrigger("Death");
+        animator.SetBool("isDead", true);
+        movement.SetMoveInput(0);
+        rb.linearVelocityX = 0;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    
     }
 }

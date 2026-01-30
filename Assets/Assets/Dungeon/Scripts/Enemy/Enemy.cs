@@ -17,7 +17,24 @@ public class Enemy : MonoBehaviour, IsDamageable
     [Space]
     [Header("AI Settings")]
     [SerializeField] private float triggerDistance = 5f;
-    
+    [SerializeField] private float attackDistance = 5f;
+
+    [Space]
+    [Header("Attack Settings")]
+    [SerializeField] private float attackOneDamage = 10f;
+    private Attack attack1;
+    public GameObject attackOnePrefab;
+    public Transform attackOneSpawnPoint;
+    public float windupTime = 0.3f;
+    public float attackOneTime = 0.2f;
+    public float cooldownTime = 2f;
+    private float cooldownClock = 0f;
+    private Attack attack2;
+    public GameObject attackTwoPrefab;
+    public Transform attackTwoSpawnPoint;
+    public float attackTwoDamage = 15f;
+    public float attackTwoTime = 0.3f;
+
     [Space]
     [Header("Movement Settings")] 
     [SerializeField] private float maxSpeed = 5f;
@@ -37,6 +54,7 @@ public class Enemy : MonoBehaviour, IsDamageable
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.15f;
     [SerializeField] private LayerMask groundLayer;
+
 
     private Movement movement;
     private bool isDead = false;
@@ -59,6 +77,9 @@ public class Enemy : MonoBehaviour, IsDamageable
             jumpForce,
             maxJumpCount
         );
+
+        attack1 = new Attack(attackOnePrefab, attackOneSpawnPoint, attackOneDamage, attackOneTime);
+        attack2 = new Attack(attackTwoPrefab, attackTwoSpawnPoint, attackTwoDamage, attackTwoTime);
     }
 
     void Update()
@@ -68,7 +89,17 @@ public class Enemy : MonoBehaviour, IsDamageable
 
     void FixedUpdate()
     {
-        if (InRange())
+        if (cooldownClock > 0f)
+            cooldownClock -= Time.deltaTime;
+
+        if (InRange(attackDistance) && cooldownClock <= 0f)
+        {
+            cooldownClock = cooldownTime;
+
+            animator.SetTrigger("Attack");
+        }
+
+        if (InRange(triggerDistance))
         {
             MoveTowardPlayer();
         }
@@ -93,12 +124,32 @@ public class Enemy : MonoBehaviour, IsDamageable
         movement.SetMoveInput(Mathf.Sign(deltaX));
     }
 
-    bool InRange()
+    bool InRange(float range)
     {
         float sqrDistance = (transform.position - player.transform.position).sqrMagnitude;
-        float sqrTrigger = triggerDistance * triggerDistance;
+        float sqrTrigger = range * range;
 
         return sqrDistance < sqrTrigger;
+    }
+
+    private void AttackOne()
+    {
+        attack1.PerformAttack();
+    }
+
+    private void AttackTwo()
+    {
+        attack2.PerformAttack();
+    }
+
+    private void LockMovement()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+    }
+
+    private void UnlockMovement()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void TakeDamage(float damage)
@@ -115,10 +166,13 @@ public class Enemy : MonoBehaviour, IsDamageable
         }
     }
 
-    private void Die()
+    public void Die()
     {
         animator.SetTrigger("Death");
+        animator.SetBool("isDead", true);
         movement.SetMoveInput(0);
+        rb.linearVelocityX = 0;
+        LockMovement();
     }
 
     public void DestroySelf()
