@@ -8,7 +8,6 @@ public class Pickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Inventory inventory = other.GetComponent<Inventory>();
-        Debug.Log("Picked up " + item.itemName);
         if (inventory != null)
         {
             inventory.AddItem(item, amount);

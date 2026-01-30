@@ -13,9 +13,12 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        IsDamageable damageable = other.GetComponent<IsDamageable>();
+
+        if (damageable != null)
         {
-            Debug.Log($"Hit enemy for {damage} damage");
+            Debug.Log("Dealing damage to enemy: " + damage);
+            damageable.TakeDamage(damage);
         }
     }
 }
